@@ -1,0 +1,10 @@
+extends ./layout
+include mixin/nav-bar
+block content
+    +nav-bar("WORK")
+    .contents
+        #detail
+            include includes/bg-score
+            include details/quantization-detail
+            #backButton
+                a(href="/works") back

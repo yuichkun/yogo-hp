@@ -1,0 +1,80 @@
+@media (max-width: 1024px) {
+    body {
+        h1 {
+            font-size: 30px;
+        }
+        #wrapper {
+            #nav-bar li a {
+                font-size: 18px;
+            }
+            .contents {
+                #works #work-list .work-box a {
+                    filter: none;
+                }
+                #detail #work-movie iframe {
+                    width: 100vw;
+                    height: calc((100vh / 16) * 9);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    body {
+        #wrapper {
+            #toggle-button {
+                display: initial;
+                z-index: 60;
+            }
+            .nav-bar-shown{
+                left: 0 !important;
+            }
+            #nav-bar {
+                position: fixed;
+                transition: all 0.7s ease-out;
+                left: -100%;
+                margin: 0;
+                width: 100vw;
+                height: 100vh;
+                .currentPage {
+                    border-bottom: 1px white solid;
+                    margin: 0 80px;
+                    padding: 0;
+                }
+                ul {
+                    // transform: translateX(-100%);
+                    background: hsla(0, 0%, 11%, 0.969);
+                    background: linear-gradient(to bottom right, hsla(0, 0%, 28%, 0.58), #000000);
+                    flex-direction: column;
+                    justify-content: center;
+                    height: 100%;
+                    li {
+                        width: 100%;
+                        text-align: center;
+                        margin: 30px 0;
+                    }
+                }
+            }
+            #bg-profile div img {
+                height: 100vh;
+                transform: translateY(20%);
+            }
+            .contents {
+                #bio {
+                    flex-direction: column-reverse;
+                    .left {
+                        min-height: 0;
+                        #profile-wrapper {
+                            align-self: initial;
+                            margin: 36px;
+                        }
+                    }
+                }
+                #detail #work-description {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
