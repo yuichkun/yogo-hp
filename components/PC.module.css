@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   z-index: -1;
+  filter: brightness(50%);
 }
 
 .bg_image {
@@ -37,7 +38,14 @@ video.quantization {
   width: 100%;
 }
 
+.video_caption {
+  font-family: Actor;
+  letter-spacing: 3px;
+}
+
 .description {
+  font-weight: bold;
+  letter-spacing: 5px;
 }
 
 

@@ -23,7 +23,7 @@ export default function PC() {
           controls
           controlsList="nodownload"
         ></video>
-        <h3>Quantization (excerpt)</h3>
+        <h3 className={styles.video_caption}>Quantization (excerpt)</h3>
       </main>
       <footer className={styles.footer}></footer>
     </div>
