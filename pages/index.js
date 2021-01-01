@@ -12,6 +12,7 @@ export default function Home() {
       <Head>
         <title>OGO</title>
         <meta property="og:title" content="YOGO" />
+        <meta property="og:site_name" content="YOGO" />
         <meta property="og:description" content="音楽家。東京藝術大学作曲科卒業。茨木のり子。" />
         <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/yogo.style/yogo_ogp.jpg" />
         <link rel="icon" href="/favicon.ico" />
