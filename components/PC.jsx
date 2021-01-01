@@ -1,6 +1,6 @@
 import styles from '../styles/PC.module.css'
 
-export default function Home() {
+export default function PC() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
