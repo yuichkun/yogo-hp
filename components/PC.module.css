@@ -27,6 +27,8 @@
 }
 
 .title {
+  font-family: Azonix, sans-serif;
+  letter-spacing: 56px;
   font-size: 120pt;
   text-align: center;
 }
