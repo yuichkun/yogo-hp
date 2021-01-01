@@ -18,12 +18,8 @@
 }
 
 .main {
-  /* background: red;
-  opacity: 0.4;
-  overflow: scroll; */
-
   color: white;
-  width: 500px;
+  width: 700px;
   margin-left: 120px;
 }
 
@@ -34,18 +30,34 @@
   text-align: center;
 }
 
+.description {
+  font-weight: bold;
+  font-size: 18pt;
+  letter-spacing: 5px;
+}
+
+.video_area {
+  display: flex;
+}
+
+.video_container {
+  width: 50%;
+}
+
+.play_button_container {
+  width: 50%;
+  display: grid;
+  place-items: center;
+}
+
 video.quantization {
   width: 100%;
 }
 
 .video_caption {
   font-family: Actor;
+  font-size: 18pt;
   letter-spacing: 3px;
-}
-
-.description {
-  font-weight: bold;
-  letter-spacing: 5px;
 }
 
 

@@ -19,14 +19,16 @@ const Description = () => (
 
 const VideoArea = () => (
   <div className={styles.video_area}>
-    <video
-      className={styles.quantization}
-      src="https://s3-ap-northeast-1.amazonaws.com/yogo.style/quantization-excerpt.mp4"
-      controls
-      controlsList="nodownload"
-    />
-    <h3 className={styles.video_caption}>Quantization (excerpt)</h3>
-    <img src="play-button.svg" alt="play-button" />
+    <div className={styles.video_container}>
+      <video
+        className={styles.quantization}
+        src="https://s3-ap-northeast-1.amazonaws.com/yogo.style/quantization-excerpt.mp4"
+      />
+      <h3 className={styles.video_caption}>Quantization (excerpt)</h3>
+    </div>
+    <div className={styles.play_button_container}>
+      <img src="play-button.svg" alt="play-button" />
+    </div>
   </div>
 );
 
