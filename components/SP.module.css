@@ -20,13 +20,13 @@
 .main {
   color: white;
   margin-top: 218px;
+  text-align: center;
 }
 
 .title {
   font-family: Azonix, sans-serif;
   letter-spacing: 24px;
   font-size: 64pt;
-  text-align: center;
 }
 
 .description {
@@ -34,4 +34,20 @@
   font-size: 12pt;
   letter-spacing: 5px;
   margin-top: 22px;
+}
+
+.video_container {
+  width: 100%;
+  margin: 38px 0;
+}
+
+video.quantization {
+  width: 100%;
+}
+
+.video_caption {
+  font-family: Actor;
+  font-size: 12pt;
+  letter-spacing: 5px;
+  margin-top: 12px;
 }

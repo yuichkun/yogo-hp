@@ -15,6 +15,18 @@ const Description = () => (
   </p>
 );
 
+const VideoArea = () => (
+  <div className={styles.video_container}>
+    <video
+      className={styles.quantization}
+      src="https://s3-ap-northeast-1.amazonaws.com/yogo.style/quantization-excerpt.mp4"
+      controls
+      controlsList="nodownload"
+    />
+    <h3 className={styles.video_caption}>Quantization (excerpt)</h3>
+  </div>
+);
+
 export default function PC() {
   return (
     <div className={styles.container}>
@@ -22,8 +34,7 @@ export default function PC() {
       <main className={styles.main}>
         <h1 className={styles.title}>YOGO</h1>
         <Description />
-        {/* <hr className={styles.separator} />
-        <VideoArea /> */}
+        <VideoArea />
       </main>
       {/* <Footer /> */}
     </div>
