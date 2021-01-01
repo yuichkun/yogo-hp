@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styles from "./PC.module.css";
 
 const Background = () => (
@@ -17,22 +18,37 @@ const Description = () => (
   </p>
 );
 
-const VideoArea = () => (
-  <div className={styles.video_area}>
-    <div className={styles.video_container}>
-      <video
-        className={styles.quantization}
-        src="https://s3-ap-northeast-1.amazonaws.com/yogo.style/quantization-excerpt.mp4"
-        controls
-        controlsList="nodownload"
-      />
-      <h3 className={styles.video_caption}>Quantization (excerpt)</h3>
+const VideoArea = () => {
+  const videoRef = useRef();
+  const playButtonRef = useRef();
+  useEffect(() => {
+    const onClick = () => {
+      videoRef.current.play();
+      if (videoRef.current.requestFullscreen) videoRef.current.requestFullscreen();
+      else if (videoRef.current.webkitRequestFullscreen) videoRef.current.webkitRequestFullscreen();
+      else if (videoRef.current.msRequestFullScreen) videoRef.current.msRequestFullScreen();
+    };
+    playButtonRef.current.addEventListener("click", onClick);
+    return () => playButtonRef.current.removeEventListener("click", onClick);
+  }, []);
+  return (
+    <div className={styles.video_area}>
+      <div className={styles.video_container}>
+        <video
+          ref={videoRef}
+          className={styles.quantization}
+          src="https://s3-ap-northeast-1.amazonaws.com/yogo.style/quantization-excerpt.mp4"
+          controls
+          controlsList="nodownload"
+        />
+        <h3 className={styles.video_caption}>Quantization (excerpt)</h3>
+      </div>
+      <div className={styles.play_button_container}>
+        <img ref={playButtonRef} src="play-button.svg" alt="play-button" />
+      </div>
     </div>
-    <div className={styles.play_button_container}>
-      <img src="play-button.svg" alt="play-button" />
-    </div>
-  </div>
-);
+  );
+};
 
 const Footer = () => <footer className={styles.footer}></footer>;
 

@@ -56,6 +56,11 @@
   place-items: center;
 }
 
+
+.play_button_container img:hover {
+  cursor: pointer;
+}
+
 video.quantization {
   width: 100%;
   margin-bottom: 18px;
