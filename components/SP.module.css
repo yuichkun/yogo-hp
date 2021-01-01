@@ -28,3 +28,10 @@
   font-size: 64pt;
   text-align: center;
 }
+
+.description {
+  text-align: center;
+  font-size: 12pt;
+  letter-spacing: 5px;
+  margin-top: 22px;
+}
