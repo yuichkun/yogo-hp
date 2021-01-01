@@ -1,9 +1,11 @@
-.container {}
-
-.main {
+.bg_container {
   width: 100vw;
   height: 100vh;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: brightness(80%);
 }
 
 .bg_image {
@@ -15,4 +17,14 @@
   left: 0;
 }
 
-.footer {}
+.main {
+  color: white;
+  margin-top: 218px;
+}
+
+.title {
+  font-family: Azonix, sans-serif;
+  letter-spacing: 24px;
+  font-size: 64pt;
+  text-align: center;
+}
