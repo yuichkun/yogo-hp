@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>YOGO</title>
+        <title>OGO</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {isWide ? <PC /> : <SP />}
