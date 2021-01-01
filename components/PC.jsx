@@ -22,8 +22,9 @@ export default function PC() {
           src="https://s3-ap-northeast-1.amazonaws.com/yogo.style/quantization-excerpt.mp4"
           controls
           controlsList="nodownload"
-        ></video>
+        />
         <h3 className={styles.video_caption}>Quantization (excerpt)</h3>
+        <img src="play-button.svg" alt="play-button"/>
       </main>
       <footer className={styles.footer}></footer>
     </div>
