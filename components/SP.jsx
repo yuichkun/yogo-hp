@@ -1,4 +1,4 @@
-import styles from './PC.module.css' // TODO: tmp
+import styles from './SP.module.css'
 
 export default function PC() {
   return (
