@@ -17,6 +17,22 @@
 }
 
 .main {
+  /* background: red;
+  opacity: 0.4;
+  overflow: scroll; */
+
+  color: white;
+  width: 500px;
+  margin-left: 120px;
+}
+
+.title {
+  font-size: 120pt;
+  text-align: center;
+}
+
+video.quantization {
+  width: 100%;
 }
 
 .description {
