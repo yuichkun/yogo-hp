@@ -22,14 +22,18 @@ const VideoArea = () => {
   const videoRef = useRef();
   const playButtonRef = useRef();
   useEffect(() => {
-    const onClick = () => {
-      videoRef.current.play();
-      if (videoRef.current.requestFullscreen) videoRef.current.requestFullscreen();
-      else if (videoRef.current.webkitRequestFullscreen) videoRef.current.webkitRequestFullscreen();
-      else if (videoRef.current.msRequestFullScreen) videoRef.current.msRequestFullScreen();
-    };
-    playButtonRef.current.addEventListener("click", onClick);
-    return () => playButtonRef.current.removeEventListener("click", onClick);
+    const video = videoRef.current
+    const playButton = playButtonRef.current
+    if (video && playButton) {
+      const onClick = () => {
+        video.play();
+        if (video.requestFullscreen) video.requestFullscreen();
+        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+        else if (video.msRequestFullScreen) video.msRequestFullScreen();
+      };
+      playButton.addEventListener("click", onClick);
+      return () => playButton.removeEventListener("click", onClick);
+    }
   }, []);
   return (
     <div className={styles.video_area}>
