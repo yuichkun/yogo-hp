@@ -1,7 +1,5 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
   font-family: "Helvetica Neue",
     Arial,
     "Hiragino Kaku Gothic ProN",
@@ -17,6 +15,8 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 @font-face {
