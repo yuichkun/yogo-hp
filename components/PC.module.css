@@ -73,4 +73,16 @@ video.quantization {
 }
 
 
-.footer {}
+.footer {
+  position: fixed;
+  bottom: 46px;
+  right: 46px;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer img {
+  width: 56px;
+  height: 56px;
+}

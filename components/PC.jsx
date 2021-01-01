@@ -22,8 +22,8 @@ const VideoArea = () => {
   const videoRef = useRef();
   const playButtonRef = useRef();
   useEffect(() => {
-    const video = videoRef.current
-    const playButton = playButtonRef.current
+    const video = videoRef.current;
+    const playButton = playButtonRef.current;
     if (video && playButton) {
       const onClick = () => {
         video.play();
@@ -54,7 +54,22 @@ const VideoArea = () => {
   );
 };
 
-const Footer = () => <footer className={styles.footer}></footer>;
+const Footer = () => (
+  <footer className={styles.footer}>
+    <a href="https://note.com/yuichi_yogo" target="_blank">
+      <img src="note.png" alt="note-icon" />
+    </a>
+    <a href="https://twitter.com/yogo_yuichi" target="_blank">
+      <img src="twitter.png" alt="twitter-icon" />
+    </a>
+    <a
+      href="https://www.youtube.com/channel/UCcRqttKMJr2axi6nuDt7qCg"
+      target="_blank"
+    >
+      <img src="youtube.png" alt="youtube-icon" />
+    </a>
+  </footer>
+);
 
 export default function PC() {
   return (
