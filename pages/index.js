@@ -13,6 +13,7 @@ export default function Home() {
         <link rel="preload" href="/bg-image-1.png" as="image" />
         <link rel="preload" href="/bg-image-2.gif" as="image" />
         <link rel="preload" href="/bg-image-3.png" as="image" />
+        <link rel="preload" href="/sp-bg-image.jpg" as="image" />
       </Head>
       {isWide ? <PC /> : <SP />}
     </>
