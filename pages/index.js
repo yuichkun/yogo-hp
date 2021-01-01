@@ -10,6 +10,9 @@ export default function Home() {
       <Head>
         <title>OGO</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preload" href="/bg-image-1.png" as="image" />
+        <link rel="preload" href="/bg-image-2.gif" as="image" />
+        <link rel="preload" href="/bg-image-3.png" as="image" />
       </Head>
       {isWide ? <PC /> : <SP />}
     </>
