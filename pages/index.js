@@ -4,7 +4,7 @@ import SP from '../components/SP'
 import {useMediaLayout} from 'use-media';
 
 export default function Home() {
-  const isWide = useMediaLayout({minWidth: '770px'});
+  const isWide = useMediaLayout({minWidth: '850px'});
   return (
     <>
       <Head>
