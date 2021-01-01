@@ -12,6 +12,7 @@ export default function Home() {
       <Head>
         <title>OGO</title>
         <meta property="og:title" content="YOGO" />
+        <meta property="og:description" content="音楽家。東京藝術大学作曲科卒業。茨木のり子。" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preload" href="/bg-image-1.png" as="image" media={`(min-width: ${MEDIA_BREAK_POINT}px)`} />
         <link rel="preload" href="/bg-image-2.gif" as="image" media={`(min-width: ${MEDIA_BREAK_POINT}px)`} />
