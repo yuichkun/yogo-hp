@@ -50,4 +50,18 @@ video.quantization {
   font-size: 12pt;
   letter-spacing: 5px;
   margin-top: 12px;
+  margin-bottom: 320px;
+}
+
+.footer {
+  width: 180px;
+  margin: 0 auto;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer img {
+  width: 35px;
+  height: 35px;
 }

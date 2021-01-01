@@ -27,7 +27,24 @@ const VideoArea = () => (
   </div>
 );
 
-export default function PC() {
+const Footer = () => (
+  <footer className={styles.footer}>
+    <a href="https://note.com/yuichi_yogo" target="_blank">
+      <img src="note.png" alt="note-icon" />
+    </a>
+    <a href="https://twitter.com/yogo_yuichi" target="_blank">
+      <img src="twitter.png" alt="twitter-icon" />
+    </a>
+    <a
+      href="https://www.youtube.com/channel/UCcRqttKMJr2axi6nuDt7qCg"
+      target="_blank"
+    >
+      <img src="youtube.png" alt="youtube-icon" />
+    </a>
+  </footer>
+);
+
+export default function SP() {
   return (
     <div className={styles.container}>
       <Background />
@@ -36,7 +53,7 @@ export default function PC() {
         <Description />
         <VideoArea />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
