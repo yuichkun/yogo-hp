@@ -1,4 +1,4 @@
-import styles from '../styles/PC.module.css' // TODO: tmp
+import styles from './PC.module.css' // TODO: tmp
 
 export default function PC() {
   return (

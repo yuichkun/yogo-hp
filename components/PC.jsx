@@ -1,4 +1,4 @@
-import styles from '../styles/PC.module.css'
+import styles from './PC.module.css'
 
 export default function PC() {
   return (
