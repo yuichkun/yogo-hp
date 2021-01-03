@@ -1,7 +1,7 @@
 import styles from "./SP.module.css";
 
 const Background = () => (
-  <div className={styles.bg_container}>
+  <div className={styles.bg_container} style={{height: window.innerHeight}}>
     <img className={styles.bg_image} src="/sp-bg-image.jpg"></img>
   </div>
 );
