@@ -7,7 +7,7 @@ const client = contentful.createClient({
 });
 
 export const getWorks = async () => {
-  return await client.getEntries<TypeWorksSkeleton>();
+  return await client.withoutUnresolvableLinks.getEntries<TypeWorksSkeleton>();
 };
 
 export const getWorkBySlug = async (slug: string) => {
