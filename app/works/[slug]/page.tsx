@@ -1,6 +1,6 @@
-import { getWorkBySlug } from "../../lib/api";
-import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import { getWorkBySlug } from "../../lib/api";
 
 export default async function Page({
   params,
@@ -12,6 +12,7 @@ export default async function Page({
   const {
     fields: { title, year, description },
   } = await getWorkBySlug(params.slug);
+  console.log(JSON.stringify(description, null, 2));
   return (
     <main className="p-8">
       <h1>
@@ -38,6 +39,15 @@ export default async function Page({
                 {children}
               </a>
             );
+          },
+          [BLOCKS.PARAGRAPH]: (node, children) => {
+            if (
+              node.content.length === 1 &&
+              (node.content[0] as any).value === ""
+            ) {
+              return <br />;
+            }
+            return <p>{children}</p>;
           },
         },
         preserveWhitespace: true,
