@@ -1,5 +1,5 @@
 import { TypeWorksSkeleton } from "@/@types/generated";
-import contentful from "contentful";
+import * as contentful from "contentful";
 
 const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
