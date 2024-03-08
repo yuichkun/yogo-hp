@@ -13,7 +13,7 @@ export default async function Page({
     fields: { title, year, description },
   } = await getWorkBySlug(params.slug);
   return (
-    <main className="">
+    <main className="p-8">
       <h1>
         {title} ({year})
       </h1>
