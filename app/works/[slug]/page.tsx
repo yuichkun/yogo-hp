@@ -1,6 +1,6 @@
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { getWorkBySlug } from "../../lib/api";
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 export default async function Page({
   params,
@@ -14,7 +14,7 @@ export default async function Page({
   } = await getWorkBySlug(params.slug);
   console.log(JSON.stringify(description, null, 2));
   return (
-    <main className="p-8">
+    <main>
       <h1>
         {title} ({year})
       </h1>
