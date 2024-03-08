@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getWorks } from "../lib/api";
 
-export default async function Home() {
+export default async function Works() {
   const works = await getWorks();
   return (
     <main className="">

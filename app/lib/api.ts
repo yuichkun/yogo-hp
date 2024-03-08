@@ -9,3 +9,15 @@ const client = contentful.createClient({
 export const getWorks = async () => {
   return await client.getEntries<TypeWorksSkeleton>();
 };
+
+export const getWorkBySlug = async (slug: string) => {
+  const { items } = await client.getEntries<TypeWorksSkeleton>({
+    content_type: "works",
+    "fields.slug": slug,
+  });
+
+  if (items.length === 0) {
+    throw new Error(`No work found with the slug "${slug}"`);
+  }
+  return items[0];
+};
