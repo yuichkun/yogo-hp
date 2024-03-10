@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, "min-h-screen relative")}>
         <Header />
-        <div className="p-4">{children}</div>
+        <div className="p-4 mb-12">{children}</div>
         <div className="fixed bottom-0 hidden">
           <FriendlyNotice />
         </div>
