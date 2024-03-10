@@ -1,7 +1,10 @@
 export default function Bio() {
   return (
-    <div>
-      <section className="grid grid-cols-2 gap-4">
+    <main className="">
+      <section
+        className="grid grid-cols-2 gap-4 w-full md:w-[720px] mx-auto"
+        style={{ gridTemplateColumns: "60px 1fr" }}
+      >
         <Row
           year="2023年"
           text="東京芸術大学大学院美術研究科先端芸術表現専攻卒業。"
@@ -21,7 +24,7 @@ export default function Bio() {
         <Row year="2009年" text="米国イリノイ州に1年間高校留学。" />
         <Row year="1992年" text="東京にて生まれる。" />
       </section>
-    </div>
+    </main>
   );
 }
 
