@@ -1,19 +1,28 @@
+"use client";
+import { cn } from "@/utils/cn";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const LINKS = [
   { href: "/works", label: "Works" },
   { href: "/bio", label: "Bio" },
-  { href: "/research", label: "Research" },
-  { href: "/activities", label: "Activities" },
+  // { href: "/research", label: "Research" },
+  // { href: "/activities", label: "Activities" },
   { href: "/contact", label: "Contact" },
 ];
 
 export const Header = () => {
+  const pathname = usePathname();
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content w-full flex justify-between items-center">
-        <Link href="/" className="text-2xl ml-4 tracking-wider font-bold">
+        <Link
+          href="/"
+          className={cn("text-2xl ml-4 tracking-wider font-bold", {
+            ["text-primary"]: pathname === "/",
+          })}
+        >
           YOGO
         </Link>
         <nav className="w-full navbar bg-base-100 flex justify-end gap-4">
@@ -21,7 +30,16 @@ export const Header = () => {
             <ul className="menu menu-horizontal">
               {LINKS.map(({ href, label }) => (
                 <li key={href}>
-                  <Link href={href}>{label}</Link>
+                  <Link
+                    className={cn({
+                      ["text-primary focus:text-primary"]: pathname.startsWith(
+                        `${href}`
+                      ),
+                    })}
+                    href={href}
+                  >
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>
