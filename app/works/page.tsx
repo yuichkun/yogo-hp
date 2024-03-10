@@ -4,7 +4,6 @@ import { getWorks } from "../lib/api";
 
 export default async function Works() {
   const works = await getWorks();
-  const IMAGE_SCALE = 0.5;
   return (
     <main className="">
       <ul className="flex flex-wrap gap-8 justify-center">
@@ -22,13 +21,12 @@ export default async function Works() {
                   {title} ({year})
                 </div>
                 {thumbnail?.fields?.file ? (
-                  <div className="w-full h-full">
+                  <div className="w-full h-full relative">
                     <Image
                       src={`https:${thumbnail.fields.file.url}`}
                       alt={title}
-                      width={1920 * IMAGE_SCALE}
-                      height={1080 * IMAGE_SCALE}
                       className="h-full object-cover"
+                      fill
                     />
                   </div>
                 ) : (
