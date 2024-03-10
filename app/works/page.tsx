@@ -4,8 +4,20 @@ import { getWorks } from "../lib/api";
 
 export default async function Works() {
   const works = await getWorks();
+  const oldestWorkYear = works.items.reduce(
+    (acc, work) => Math.min(acc, work.fields.year),
+    Infinity
+  );
+  const newestWorkYear = works.items.reduce(
+    (acc, work) => Math.max(acc, work.fields.year),
+    -Infinity
+  );
   return (
     <main className="">
+      <div className="text-center mb-4">
+        Works by Yuichi Yogo <br />
+        {oldestWorkYear} - {newestWorkYear}
+      </div>
       <ul className="flex flex-wrap gap-8 justify-center">
         {works.items.map((work) => {
           const {
