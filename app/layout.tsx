@@ -36,7 +36,7 @@ export default async function RootLayout({
         <div className="fixed bottom-0 hidden">
           <FriendlyNotice />
         </div>
-        <div className="w-screen h-screen fixed top-0 left-0 -z-10">
+        <div className="w-screen h-screen fixed top-0 left-0 -z-10 opacity-20">
           <Background
             fragmentShader={fragmentShader}
             vertexShader={vertexShader}
