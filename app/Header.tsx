@@ -25,7 +25,7 @@ export const Header = () => {
         >
           YOGO
         </Link>
-        <nav className="w-full navbar bg-base-100 flex justify-end gap-4">
+        <nav className="w-full navbar flex justify-end gap-4">
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal">
               {LINKS.map(({ href, label }) => (
@@ -61,7 +61,7 @@ export const Header = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200">
+        <ul className="menu p-4 w-80 min-h-full">
           {LINKS.map(({ href, label }) => (
             <li key={href}>
               <Link href={href}>{label}</Link>
