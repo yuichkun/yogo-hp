@@ -1,3 +1,5 @@
+import { promises as fs } from "fs";
+import path from "path";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -13,11 +15,19 @@ export const metadata: Metadata = {
   description: "Official website of Yuichi Yogo",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const vertexShader = await fs.readFile(
+    path.resolve("./public/vert.glsl"),
+    "utf-8"
+  );
+  const fragmentShader = await fs.readFile(
+    path.resolve("./public/frag.glsl"),
+    "utf-8"
+  );
   return (
     <html lang="en">
       <body className={cn(inter.className, "min-h-screen relative")}>
@@ -27,7 +37,10 @@ export default function RootLayout({
           <FriendlyNotice />
         </div>
         <div className="w-screen h-screen fixed top-0 left-0 -z-10">
-          <Background />
+          <Background
+            fragmentShader={fragmentShader}
+            vertexShader={vertexShader}
+          />
         </div>
       </body>
     </html>
