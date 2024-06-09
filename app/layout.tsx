@@ -5,6 +5,7 @@ import { cn } from "@/utils/cn";
 import { Header } from "./Header";
 import { FriendlyNotice } from "./FriendlyNotice";
 import { Background } from "./components/Background";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,9 +27,7 @@ export default async function RootLayout({
         <div className="fixed bottom-0 hidden">
           <FriendlyNotice />
         </div>
-        <div className="w-screen h-screen fixed top-0 left-0 -z-10">
-          <Background />
-        </div>
+        <Background />
       </body>
     </html>
   );
