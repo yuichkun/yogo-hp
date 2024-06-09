@@ -31,3 +31,15 @@ export const getNews = async () => {
     order: ["-fields.date"],
   });
 };
+
+export const getNewsBySlug = async (slug: string) => {
+  const { items } = await client.getEntries<TypeNewsSkeleton>({
+    content_type: "news",
+    "fields.slug": slug,
+  });
+
+  if (items.length === 0) {
+    throw new Error(`No news found with the slug "${slug}"`);
+  }
+  return items[0];
+};
