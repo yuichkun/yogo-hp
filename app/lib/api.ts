@@ -1,4 +1,4 @@
-import { TypeWorksSkeleton } from "@/@types/generated";
+import { TypeNewsSkeleton, TypeWorksSkeleton } from "@/@types/generated";
 import * as contentful from "contentful";
 
 const client = contentful.createClient({
@@ -23,4 +23,11 @@ export const getWorkBySlug = async (slug: string) => {
     throw new Error(`No work found with the slug "${slug}"`);
   }
   return items[0];
+};
+
+export const getNews = async () => {
+  return await client.getEntries<TypeNewsSkeleton>({
+    content_type: "news",
+    order: ["-fields.date"],
+  });
 };
