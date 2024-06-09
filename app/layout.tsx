@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body className={cn(inter.className, "min-h-screen relative")}>
         <Header />
         <div className="p-4 mb-12">{children}</div>
