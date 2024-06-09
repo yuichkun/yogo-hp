@@ -23,7 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html
+      lang="ja"
+      style={{
+        background: "radial-gradient(#262282, #383486)",
+      }}
+    >
       <body className={cn(inter.className, "min-h-screen relative")}>
         <Header />
         <div className="p-4 mb-12">{children}</div>
