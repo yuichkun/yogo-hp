@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.image {
+  transition: 1s ease;
+}
+.clipped {
+  /* just because if I set this to 100%, Next.js' lazy loading stops working.so... */
+  clip-path: inset(99% 0 0 0);
+}
+.revealed {
+  clip-path: inset(0% 0 0 0);
+}
