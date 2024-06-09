@@ -9,4 +9,4 @@ export interface TypeWorksFields {
 }
 
 export type TypeWorksSkeleton = EntrySkeletonType<TypeWorksFields, "works">;
-export type TypeWorks<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeWorksSkeleton, Modifiers, Locales>;
+export type TypeWorks<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeWorksSkeleton, Modifiers, Locales>;
