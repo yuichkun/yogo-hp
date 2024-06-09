@@ -19,7 +19,7 @@ export default async function Works() {
         Works by Yuichi Yogo <br />
         {oldestWorkYear} - {newestWorkYear}
       </div>
-      <ul className="flex flex-wrap gap-8 justify-center">
+      <ul className="flex flex-wrap gap-16 justify-center">
         {works.items.map((work) => {
           const {
             fields: { slug, title, thumbnail, year },
