@@ -30,3 +30,7 @@ iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
 }
+
+a {
+  text-decoration: underline;
+}

@@ -26,7 +26,7 @@ export default async function Works() {
           } = work;
           return (
             <li key={work.sys.id} className="basis-[640px] p-4">
-              <Link href={`works/${slug}`}>
+              <Link href={`works/${slug}`} className="no-underline">
                 <div className="mb-4">
                   <span className="font-bold text-2xl">{title}</span>{" "}
                   <span className="text-xl">({year})</span>

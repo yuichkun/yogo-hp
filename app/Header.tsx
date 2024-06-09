@@ -25,7 +25,7 @@ export const Header = () => {
         <Link
           href="/"
           className={cn(
-            "text-2xl ml-4 tracking-wider font-bold hover:bg-black px-2",
+            "text-2xl ml-4 tracking-wider font-bold hover:bg-black px-2 no-underline",
             {
               ["text-primary"]: pathname === "/",
             }
@@ -39,11 +39,13 @@ export const Header = () => {
               {LINKS.map(({ href, label }) => (
                 <li key={href}>
                   <Link
-                    className={cn("hover:bg-black px-2 uppercase", {
-                      ["text-primary focus:text-primary"]: pathname.startsWith(
-                        `${href}`
-                      ),
-                    })}
+                    className={cn(
+                      "hover:bg-black px-2 uppercase no-underline",
+                      {
+                        ["text-primary focus:text-primary"]:
+                          pathname.startsWith(`${href}`),
+                      }
+                    )}
                     href={href}
                   >
                     {label}
@@ -74,6 +76,7 @@ export const Header = () => {
             <li key={href}>
               <Link
                 href={href}
+                className="no-underline"
                 onClick={() => {
                   if (input.current) {
                     input.current.checked = false;
