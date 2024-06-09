@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getWorks } from "../lib/api";
+import { WorkImage } from "../components/WorkImage";
 
 export default async function Works() {
   const works = await getWorks();
@@ -33,14 +34,10 @@ export default async function Works() {
                   {title} ({year})
                 </div>
                 {thumbnail?.fields?.file ? (
-                  <div className="w-full h-full relative">
-                    <Image
-                      src={`https:${thumbnail.fields.file.url}`}
-                      alt={title}
-                      className="h-full object-cover"
-                      fill
-                    />
-                  </div>
+                  <WorkImage
+                    url={`https:${thumbnail.fields.file.url}`}
+                    title={title}
+                  />
                 ) : (
                   <div>no image</div>
                 )}
