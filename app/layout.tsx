@@ -1,5 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -20,14 +18,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const vertexShader = await fs.readFile(
-    path.resolve("./public/vert.glsl"),
-    "utf-8"
-  );
-  const fragmentShader = await fs.readFile(
-    path.resolve("./public/frag.glsl"),
-    "utf-8"
-  );
   return (
     <html lang="en">
       <body className={cn(inter.className, "min-h-screen relative")}>
@@ -36,11 +26,8 @@ export default async function RootLayout({
         <div className="fixed bottom-0 hidden">
           <FriendlyNotice />
         </div>
-        <div className="w-screen h-screen fixed top-0 left-0 -z-10 opacity-20">
-          <Background
-            fragmentShader={fragmentShader}
-            vertexShader={vertexShader}
-          />
+        <div className="w-screen h-screen fixed top-0 left-0 -z-10">
+          <Background />
         </div>
       </body>
     </html>
