@@ -39,7 +39,7 @@ export const Header = () => {
               {LINKS.map(({ href, label }) => (
                 <li key={href}>
                   <Link
-                    className={cn("hover:bg-black px-2", {
+                    className={cn("hover:bg-black px-2 uppercase", {
                       ["text-primary focus:text-primary"]: pathname.startsWith(
                         `${href}`
                       ),
@@ -69,7 +69,7 @@ export const Header = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="p-4 w-80 min-h-full font-bold bg-black bg-opacity-70 flex flex-col gap-6 text-center pt-16">
+        <ul className="p-4 w-80 min-h-full font-bold bg-black bg-opacity-70 flex flex-col gap-6 text-center pt-16 uppercase">
           {LINKS.map(({ href, label }) => (
             <li key={href}>
               <Link
