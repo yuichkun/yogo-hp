@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  transition: 0.2s all ease-out;
+  clip-path: polygon(7% 0, 100% 0, 100% 97%, 93% 100%, 0 100%, 0 3%);
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.image-wrapper:hover {
+  transform: scale(1.04);
+  filter: brightness(1.3) contrast(1.1);
+}
+
 .image {
   transition: 1s ease;
 }
