@@ -1,6 +1,7 @@
 import { getWorkBySlug } from "../../lib/api";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { FilePreview } from "@/app/components/FilePreview";
 
 export default async function Page({
   params,
@@ -10,9 +11,9 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const {
-    fields: { title, year, description },
+    fields: { title, year, description, files },
   } = await getWorkBySlug(params.slug);
-  console.log(JSON.stringify(description, null, 2));
+
   return (
     <main className="mx-auto p-8 max-w-[960px] flex flex-col items-center">
       <h1 className="text-2xl mb-8">
@@ -53,6 +54,20 @@ export default async function Page({
         },
         preserveWhitespace: true,
       })}
+      <div>
+        {files &&
+          files.length > 0 &&
+          files.map((file) => {
+            if (!file?.fields.file) return null;
+            return (
+              <FilePreview
+                key={file.sys.id}
+                url={file.fields.file.url}
+                title={file.fields.title ?? "ファイル名不明"}
+              />
+            );
+          })}
+      </div>
     </main>
   );
 }

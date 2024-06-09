@@ -6,6 +6,7 @@ export interface TypeWorksFields {
     description: EntryFieldTypes.RichText;
     year: EntryFieldTypes.Integer;
     slug: EntryFieldTypes.Symbol;
+    files?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
 }
 
 export type TypeWorksSkeleton = EntrySkeletonType<TypeWorksFields, "works">;

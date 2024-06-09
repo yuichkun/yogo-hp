@@ -14,10 +14,11 @@ export const getWorks = async () => {
 };
 
 export const getWorkBySlug = async (slug: string) => {
-  const { items } = await client.getEntries<TypeWorksSkeleton>({
-    content_type: "works",
-    "fields.slug": slug,
-  });
+  const { items } =
+    await client.withoutUnresolvableLinks.getEntries<TypeWorksSkeleton>({
+      content_type: "works",
+      "fields.slug": slug,
+    });
 
   if (items.length === 0) {
     throw new Error(`No work found with the slug "${slug}"`);
