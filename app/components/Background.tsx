@@ -13,7 +13,7 @@ export default function Background() {
       className={cn(
         "w-screen h-screen fixed top-0 left-0 -z-10 transition-opacity",
         {
-          "opacity-20": !isHome,
+          "opacity-10": !isHome,
         }
       )}
     >
