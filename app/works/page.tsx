@@ -25,12 +25,9 @@ export default async function Works() {
             fields: { slug, title, thumbnail, year },
           } = work;
           return (
-            <li
-              key={work.sys.id}
-              className="basis-[640px] h-[360px] p-4 overflow-hidden"
-            >
+            <li key={work.sys.id} className="basis-[640px] h-[360px] p-4">
               <Link className="text-2xl font-bold" href={`works/${slug}`}>
-                <div className="mb-4">
+                <div className="mb-4 whitespace-nowrap">
                   {title} ({year})
                 </div>
                 {thumbnail?.fields?.file ? (
