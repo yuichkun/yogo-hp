@@ -24,19 +24,22 @@ export const Header = () => {
       <div className="drawer-content w-full flex justify-between items-center">
         <Link
           href="/"
-          className={cn("text-2xl ml-4 tracking-wider font-bold", {
-            ["text-primary"]: pathname === "/",
-          })}
+          className={cn(
+            "text-2xl ml-4 tracking-wider font-bold hover:bg-black px-2",
+            {
+              ["text-primary"]: pathname === "/",
+            }
+          )}
         >
           YOGO
         </Link>
         <nav className="w-full navbar flex justify-end gap-4">
           <div className="flex-none hidden lg:block">
-            <ul className="menu menu-horizontal font-bold">
+            <ul className="flex gap-8 font-bold">
               {LINKS.map(({ href, label }) => (
                 <li key={href}>
                   <Link
-                    className={cn({
+                    className={cn("hover:bg-black px-2", {
                       ["text-primary focus:text-primary"]: pathname.startsWith(
                         `${href}`
                       ),
@@ -66,7 +69,7 @@ export const Header = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full font-bold bg-black bg-opacity-70">
+        <ul className="p-4 w-80 min-h-full font-bold bg-black bg-opacity-70 flex flex-col gap-6 text-center pt-16">
           {LINKS.map(({ href, label }) => (
             <li key={href}>
               <Link
