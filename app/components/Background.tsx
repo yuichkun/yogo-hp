@@ -2,10 +2,12 @@
 import { cn } from "@/utils/cn";
 import Spline from "@splinetool/react-spline/next";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
-export function Background() {
+export default function Background() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <div
       className={cn(
@@ -15,7 +17,17 @@ export function Background() {
         }
       )}
     >
-      <Spline scene="https://prod.spline.design/PiZdRPRPqT6MNYsC/scene.splinecode" />
+      {isLoading && <Loading />}
+      <Spline
+        scene="https://prod.spline.design/PiZdRPRPqT6MNYsC/scene.splinecode"
+        onLoad={() => setIsLoading(false)}
+      />
     </div>
   );
 }
+
+const Loading = () => (
+  <div className="fixed grid place-content-center w-screen h-screen bg-gray-300 bg-opacity-20">
+    <span className="loading loading-ring loading-lg"></span>
+  </div>
+);

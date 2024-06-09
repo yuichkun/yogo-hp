@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import { cn } from "@/utils/cn";
-import { Header } from "./Header";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { Inter } from "next/font/google";
 import { FriendlyNotice } from "./FriendlyNotice";
-import { Background } from "./components/Background";
-import { usePathname } from "next/navigation";
+import { Header } from "./Header";
+import "./globals.css";
+
+const DynamicBackground = dynamic(() => import("./components/Background"), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +17,7 @@ export const metadata: Metadata = {
   description: "Official website of Yuichi Yogo",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -27,7 +30,7 @@ export default async function RootLayout({
         <div className="fixed bottom-0 hidden">
           <FriendlyNotice />
         </div>
-        <Background />
+        <DynamicBackground />
       </body>
     </html>
   );
