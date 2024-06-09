@@ -6,8 +6,6 @@ import { usePathname, useRouter } from "next/navigation";
 const LINKS = [
   { href: "/works", label: "Works" },
   { href: "/bio", label: "Bio" },
-  // { href: "/research", label: "Research" },
-  // { href: "/activities", label: "Activities" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -27,7 +25,7 @@ export const Header = () => {
         </Link>
         <nav className="w-full navbar flex justify-end gap-4">
           <div className="flex-none hidden lg:block">
-            <ul className="menu menu-horizontal">
+            <ul className="menu menu-horizontal font-bold">
               {LINKS.map(({ href, label }) => (
                 <li key={href}>
                   <Link
