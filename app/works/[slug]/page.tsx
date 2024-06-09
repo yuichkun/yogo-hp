@@ -14,8 +14,8 @@ export default async function Page({
   } = await getWorkBySlug(params.slug);
   console.log(JSON.stringify(description, null, 2));
   return (
-    <main>
-      <h1>
+    <main className="mx-auto p-8 max-w-[960px] flex flex-col items-center">
+      <h1 className="text-2xl mb-8">
         {title} ({year})
       </h1>
       {documentToReactComponents(description, {
@@ -24,6 +24,7 @@ export default async function Page({
             if (node.data.uri.includes("<iframe")) {
               return (
                 <span
+                  className="my-8 block"
                   dangerouslySetInnerHTML={{
                     __html: node.data.uri,
                   }}
