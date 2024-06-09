@@ -12,6 +12,8 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "15.19.6",
     "@react-three/fiber": "8.16.8",
+    "@splinetool/react-spline": "3.1.0",
+    "@splinetool/runtime": "1.5.5",
     "@types/three": "0.165.0",
     "clsx": "2.1.0",
     "contentful": "10.8.0",
