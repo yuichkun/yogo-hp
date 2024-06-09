@@ -19,15 +19,15 @@ export default async function Works() {
         Works by Yuichi Yogo <br />
         {oldestWorkYear} - {newestWorkYear}
       </div>
-      <ul className="flex flex-wrap gap-16 justify-center">
+      <ul className="flex flex-wrap gap-4 lg:gap-16 justify-center">
         {works.items.map((work) => {
           const {
             fields: { slug, title, thumbnail, year },
           } = work;
           return (
-            <li key={work.sys.id} className="basis-[640px] h-[360px] p-4">
+            <li key={work.sys.id} className="basis-[640px] p-4">
               <Link href={`works/${slug}`}>
-                <div className="mb-4 whitespace-nowrap">
+                <div className="mb-4">
                   <span className="font-bold text-2xl">{title}</span>{" "}
                   <span className="text-xl">({year})</span>
                 </div>

@@ -22,7 +22,7 @@ export function WorkImage({ title, url }: Props) {
     revealed: !isLoading,
   });
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full relative aspect-video">
       {isLoading && <Loading />}
       <div className="image-wrapper">
         <Image src={url} alt={title} className={cls} fill onLoad={handleLoad} />
