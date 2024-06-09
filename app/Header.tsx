@@ -2,6 +2,7 @@
 import { cn } from "@/utils/cn";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useRef } from "react";
 
 const LINKS = [
   { href: "/works", label: "Works" },
@@ -11,9 +12,15 @@ const LINKS = [
 
 export const Header = () => {
   const pathname = usePathname();
+  const input = useRef<HTMLInputElement>(null);
   return (
-    <div className="drawer">
-      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+    <div className="drawer z-50">
+      <input
+        id="my-drawer-3"
+        type="checkbox"
+        className="drawer-toggle"
+        ref={input}
+      />
       <div className="drawer-content w-full flex justify-between items-center">
         <Link
           href="/"
@@ -59,10 +66,19 @@ export const Header = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full">
+        <ul className="menu p-4 w-80 min-h-full font-bold bg-black bg-opacity-70">
           {LINKS.map(({ href, label }) => (
             <li key={href}>
-              <Link href={href}>{label}</Link>
+              <Link
+                href={href}
+                onClick={() => {
+                  if (input.current) {
+                    input.current.checked = false;
+                  }
+                }}
+              >
+                {label}
+              </Link>
             </li>
           ))}
         </ul>
