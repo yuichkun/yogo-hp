@@ -35,7 +35,7 @@ export default async function Works() {
                 </div>
                 {thumbnail?.fields?.file ? (
                   <WorkImage
-                    url={`https:${thumbnail.fields.file.url}`}
+                    url={`https:${thumbnail.fields.file.url}?w=640&h=360&fit=fill&f=center&fm=webp`}
                     title={title}
                   />
                 ) : (
