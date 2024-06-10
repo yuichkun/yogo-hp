@@ -32,4 +32,12 @@ export const SHARED_METADATA: Metadata = {
     locale: "ja_JP",
     type: "website",
   },
+  alternates: {
+    canonical: "https://yogo.style",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YOGO HP",
+    description: "The Official Website of Yuichi Yogo",
+  },
 };
