@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } = await getWorkBySlug(params.slug);
   let thumbnailUrl = "";
   if (thumbnail?.fields.file) {
-    thumbnailUrl = `https:${thumbnail.fields.file.url}?w=640&h=360&fit=fill&f=center&fm=jpg`;
+    thumbnailUrl = `https:${thumbnail.fields.file.url}?w=1200&h=630&fit=fill&f=center&fm=jpg`;
   }
   return {
     title,
@@ -88,10 +88,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: thumbnailUrl,
-          width: 640,
-          height: 360,
+          width: 1200,
+          height: 630,
         },
       ],
+    },
+    twitter: {
+      title,
     },
   };
 }
