@@ -1,14 +1,14 @@
 import { getNewsBySlug, getWorkBySlug } from "../../lib/api";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { Metadata } from "next";
+import { SHARED_METADATA } from "@/app/shared-metadata";
 
-export default async function Page({
-  params,
-  searchParams,
-}: {
+type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
-}) {
+};
+export default async function Page({ params, searchParams }: Props) {
   const {
     fields: { title, detail, date },
   } = await getNewsBySlug(params.slug);
@@ -51,4 +51,18 @@ export default async function Page({
       })}
     </main>
   );
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const {
+    fields: { title },
+  } = await getNewsBySlug(params.slug);
+  return {
+    title: "News",
+    description: title,
+    twitter: {
+      title: `YOGO HP | News`,
+      description: title,
+    },
+  };
 }
