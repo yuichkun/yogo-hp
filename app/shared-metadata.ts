@@ -8,6 +8,7 @@ export const SHARED_METADATA: Metadata = {
   description: "The Official Website of Yuichi Yogo",
   generator: "Next.js",
   applicationName: "YOGO HP",
+  metadataBase: new URL("https://yogo.style"),
   keywords: [
     "Yuichi Yogo",
     "Yogo Yuichi",
