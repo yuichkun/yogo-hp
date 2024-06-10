@@ -65,4 +65,5 @@ export default function Contact() {
 
 export const metadata: Metadata = {
   title: "Contact",
+  description: "Contact information of Yuichi Yogo",
 };

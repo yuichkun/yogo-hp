@@ -50,4 +50,5 @@ export default async function Works() {
 
 export const metadata: Metadata = {
   title: "Works",
+  description: "List of works by Yuichi Yogo",
 };

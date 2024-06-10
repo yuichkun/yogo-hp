@@ -71,4 +71,5 @@ function Row({ year, text }: { year: string; text: string }) {
 
 export const metadata: Metadata = {
   title: "Bio",
+  description: "Biography of Yuichi Yogo",
 };
