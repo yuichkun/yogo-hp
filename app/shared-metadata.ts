@@ -26,4 +26,10 @@ export const SHARED_METADATA: Metadata = {
   ],
   creator: "Yuichi Yogo",
   publisher: "Yogo Management Office, LLC",
+  openGraph: {
+    url: "https://yogo.style",
+    siteName: "YOGO HP",
+    locale: "ja_JP",
+    type: "website",
+  },
 };
