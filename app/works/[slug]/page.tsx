@@ -2,14 +2,14 @@ import { getWorkBySlug } from "../../lib/api";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { FilePreview } from "@/app/components/FilePreview";
+import { Metadata } from "next";
+import { SHARED_METADATA } from "@/app/shared-metadata";
 
-export default async function Page({
-  params,
-  searchParams,
-}: {
+type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
-}) {
+};
+export default async function Page({ params, searchParams }: Props) {
   const {
     fields: { title, year, description, files },
   } = await getWorkBySlug(params.slug);
@@ -71,4 +71,27 @@ export default async function Page({
       </div>
     </main>
   );
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const {
+    fields: { title, thumbnail },
+  } = await getWorkBySlug(params.slug);
+  let thumbnailUrl = "";
+  if (thumbnail?.fields.file) {
+    thumbnailUrl = `https:${thumbnail.fields.file.url}?w=640&h=360&fit=fill&f=center&fm=jpg`;
+  }
+  return {
+    title,
+    openGraph: {
+      ...SHARED_METADATA.openGraph,
+      images: [
+        {
+          url: thumbnailUrl,
+          width: 640,
+          height: 360,
+        },
+      ],
+    },
+  };
 }
