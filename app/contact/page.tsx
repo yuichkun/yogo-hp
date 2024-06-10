@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 export default function Contact() {
   return (
     <main>
@@ -60,3 +62,7 @@ export default function Contact() {
     </main>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Contact",
+};

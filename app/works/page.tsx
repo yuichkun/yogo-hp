@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { getWorks } from "../lib/api";
 import { WorkImage } from "../components/WorkImage";
+import { Metadata } from "next";
 
 export default async function Works() {
   const works = await getWorks();
@@ -47,3 +47,7 @@ export default async function Works() {
     </main>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Works",
+};

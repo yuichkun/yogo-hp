@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 export default function Bio() {
   return (
     <main className="">
@@ -66,3 +68,7 @@ function Row({ year, text }: { year: string; text: string }) {
     </>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Bio",
+};

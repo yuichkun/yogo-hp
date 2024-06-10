@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { FriendlyNotice } from "./FriendlyNotice";
 import { Header } from "./Header";
 import "./globals.css";
+import { SHARED_METADATA } from "./shared-metadata";
 
 const DynamicBackground = dynamic(() => import("./components/Background"), {
   ssr: false,
@@ -13,8 +14,7 @@ const DynamicBackground = dynamic(() => import("./components/Background"), {
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Yuichi Yogo",
-  description: "The Official Website of Yuichi Yogo",
+  ...SHARED_METADATA,
 };
 
 export default function RootLayout({
