@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Yuichi Yogo",
-  description: "Official website of Yuichi Yogo",
+  description: "The Official Website of Yuichi Yogo",
 };
 
 export default function RootLayout({
