@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { SHARED_METADATA } from "../shared-metadata";
 
 export default function Bio() {
   return (
@@ -72,4 +73,9 @@ function Row({ year, text }: { year: string; text: string }) {
 export const metadata: Metadata = {
   title: "Bio",
   description: "Biography of Yuichi Yogo",
+  twitter: {
+    ...SHARED_METADATA.twitter,
+    title: `YOGO HP | Bio`,
+    description: "Biography of Yuichi Yogo",
+  },
 };

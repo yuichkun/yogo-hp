@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { SHARED_METADATA } from "../shared-metadata";
 
 export default function Contact() {
   return (
@@ -66,4 +67,9 @@ export default function Contact() {
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contact information of Yuichi Yogo",
+  twitter: {
+    ...SHARED_METADATA.twitter,
+    title: `YOGO HP | Contact`,
+    description: "Contact information of Yuichi Yogo",
+  },
 };

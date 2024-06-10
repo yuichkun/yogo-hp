@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getWorks } from "../lib/api";
 import { WorkImage } from "../components/WorkImage";
 import { Metadata } from "next";
+import { SHARED_METADATA } from "../shared-metadata";
 
 export default async function Works() {
   const works = await getWorks();
@@ -51,4 +52,9 @@ export default async function Works() {
 export const metadata: Metadata = {
   title: "Works",
   description: "List of works by Yuichi Yogo",
+  twitter: {
+    ...SHARED_METADATA.twitter,
+    title: `YOGO HP | Works`,
+    description: "List of works by Yuichi Yogo",
+  },
 };
