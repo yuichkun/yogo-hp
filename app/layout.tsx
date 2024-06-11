@@ -6,6 +6,7 @@ import { FriendlyNotice } from "./FriendlyNotice";
 import { Header } from "./Header";
 import "./globals.css";
 import { SHARED_METADATA } from "./shared-metadata";
+import { Analytics } from "@vercel/analytics/react";
 
 const DynamicBackground = dynamic(() => import("./components/Background"), {
   ssr: false,
@@ -36,6 +37,7 @@ export default function RootLayout({
           <FriendlyNotice />
         </div>
         <DynamicBackground />
+        <Analytics />
       </body>
     </html>
   );
