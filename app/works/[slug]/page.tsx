@@ -34,7 +34,11 @@ export default async function Page({ params, searchParams }: Props) {
                 );
               }
               return (
-                <a href={node.data.uri} target="__blank">
+                <a
+                  href={node.data.uri}
+                  target="__blank"
+                  className="break-words"
+                >
                   {children}
                 </a>
               );
