@@ -44,3 +44,8 @@ export const getNewsBySlug = async (slug: string) => {
   }
   return items[0];
 };
+
+export const getAllTags = async () => {
+  const { items } = await client.getTags();
+  return items;
+};
