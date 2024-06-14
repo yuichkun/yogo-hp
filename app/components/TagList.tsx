@@ -3,7 +3,7 @@
 import { cn } from "@/utils/cn";
 import { Tag as ITag } from "contentful";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSelectedTag } from "../hooks/useSelectedTag";
 
 export const Tag = ({
   name,
@@ -37,9 +37,7 @@ export const Tag = ({
 };
 
 export const TagList = ({ allTags }: { allTags: ITag[] }) => {
-  const pathName = usePathname();
-  const searchParams = useSearchParams();
-  const selectedTagId = searchParams.get("tag");
+  const selectedTagId = useSelectedTag();
   return (
     <ul className="flex gap-2 p-4 whitespace-nowrap overflow-x-auto">
       {allTags.map((tag) => {
@@ -50,7 +48,7 @@ export const TagList = ({ allTags }: { allTags: ITag[] }) => {
           <li key={tag.sys.id}>
             <Tag
               name={tag.name}
-              href={`${pathName}/?${params.toString()}`}
+              href={`/works/?${params.toString()}`}
               isSelected={isSelected}
             />
           </li>
