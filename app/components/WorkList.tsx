@@ -15,6 +15,7 @@ export function WorkList({
 }) {
   const selectedTagId = useSelectedTag();
   const filteredWorks = works.items.filter((work) => {
+    if (selectedTagId === null) return true;
     return work.metadata.tags.some((tag) => tag.sys.id === selectedTagId);
   });
   return (

@@ -40,6 +40,9 @@ export const TagList = ({ allTags }: { allTags: ITag[] }) => {
   const selectedTagId = useSelectedTag();
   return (
     <ul className="flex gap-2 p-4 whitespace-nowrap overflow-x-auto">
+      <li key="all-works">
+        <Tag name="ALL" href="/works" isSelected={selectedTagId === null} />
+      </li>
       {allTags.map((tag) => {
         const params = new URLSearchParams();
         params.append("tag", tag.sys.id);
