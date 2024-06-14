@@ -26,7 +26,10 @@ export function WorkList({
           metadata: { tags },
         } = work;
         return (
-          <li key={work.sys.id} className="basis-[640px] p-4">
+          <li
+            key={work.sys.id}
+            className="basis-[640px] p-4 hover:scale-105 transition-transform"
+          >
             <Link href={`works/${slug}`} className="no-underline">
               <div className="mb-2">
                 <span className="font-bold text-2xl">{title}</span>{" "}
