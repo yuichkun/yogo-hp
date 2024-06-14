@@ -12,6 +12,7 @@ export const getWorks = async () => {
     order: ["-fields.year"],
   });
 };
+export type Works = Awaited<ReturnType<typeof getWorks>>;
 
 export const getWorkBySlug = async (slug: string) => {
   const { items } =
