@@ -11,7 +11,7 @@ export default function Bio() {
       >
         <Row
           year="2023年"
-          text="東京芸術大学大学院美術研究科先端芸術表現専攻卒業。"
+          text="東京芸術大学大学院美術研究科先端芸術表現専攻修了。"
         />
         <Row year="2020年" text="Yogo Management Office 合同会社設立。" />
         <Row
