@@ -28,7 +28,7 @@ export function WorkList({
         return (
           <li
             key={work.sys.id}
-            className="basis-[640px] p-4 hover:scale-105 transition-transform"
+            className="basis-[640px] p-4 hover:scale-105 transition-transform overflow-hidden"
           >
             <Link href={`works/${slug}`} className="no-underline">
               <div className="mb-2">
@@ -36,14 +36,14 @@ export function WorkList({
                 <span className="text-xl">({year})</span>
               </div>
               <div className="mb-2">
-                <ul className="flex gap-2">
+                <ul className="flex gap-2 overflow-x-auto">
                   {tags.map((tag) => {
                     const foundTag = allTags.find(
                       (t) => t.sys.id === tag.sys.id
                     );
                     if (!foundTag) return null;
                     return (
-                      <li key={tag.sys.id}>
+                      <li key={tag.sys.id} className="py-1">
                         <Tag name={foundTag.name} />
                       </li>
                     );

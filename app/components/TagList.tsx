@@ -16,7 +16,7 @@ export const Tag = ({
 }) => {
   if (!href) {
     return (
-      <div className="capitalize border inline px-3 py-1 rounded-2xl text-xs">
+      <div className="capitalize border inline px-3 py-1 rounded-2xl text-xs whitespace-nowrap">
         {name}
       </div>
     );

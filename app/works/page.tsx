@@ -21,7 +21,7 @@ export default async function Works() {
         Works by Yuichi Yogo <br />
         {oldestWorkYear} - {newestWorkYear}
       </div>
-      <div className="mb-8 w-[640px] mx-auto">
+      <div className="mb-8 w-full md:w-[640px] mx-auto">
         <TagList allTags={allTags} />
       </div>
       <WorkList works={works} allTags={allTags} />
