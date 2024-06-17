@@ -3,6 +3,7 @@ import { TagList } from "../components/TagList";
 import { WorkList } from "../components/WorkList";
 import { getAllTags, getWorks } from "../lib/api";
 import { SHARED_METADATA } from "../shared-metadata";
+import { Suspense } from "react";
 
 export default async function Works() {
   const allTags = await getAllTags();
@@ -22,9 +23,13 @@ export default async function Works() {
         {oldestWorkYear} - {newestWorkYear}
       </div>
       <div className="mb-8 w-full md:w-[640px] mx-auto">
-        <TagList allTags={allTags} />
+        <Suspense>
+          <TagList allTags={allTags} />
+        </Suspense>
       </div>
-      <WorkList works={works} allTags={allTags} />
+      <Suspense>
+        <WorkList works={works} allTags={allTags} />
+      </Suspense>
     </main>
   );
 }
