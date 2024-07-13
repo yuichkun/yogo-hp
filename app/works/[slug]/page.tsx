@@ -63,11 +63,12 @@ export default async function Page({ params, searchParams }: Props) {
             {files.map((file) => {
               if (!file?.fields.file) return null;
               return (
-                <FilePreview
-                  key={file.sys.id}
-                  url={file.fields.file.url}
-                  title={file.fields.title ?? "ファイル名不明"}
-                />
+                <div key={file.sys.id}>
+                  <FilePreview
+                    url={file.fields.file.url}
+                    title={file.fields.title ?? "ファイル名不明"}
+                  />
+                </div>
               );
             })}
           </>
