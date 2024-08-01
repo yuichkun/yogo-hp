@@ -43,7 +43,7 @@ export default function Bio() {
           <div>
             英語
             <ul>
-              <li>TOEIC Listening & Writing Test: 950/990</li>
+              <li>TOEIC Listening & Writing Test: 980/990</li>
               <li>EC SET: C2 Proficient</li>
             </ul>
           </div>
