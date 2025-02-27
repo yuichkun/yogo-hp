@@ -5,6 +5,8 @@ import { getAllTags, getWorks } from "../lib/api";
 import { SHARED_METADATA } from "../shared-metadata";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 export default async function Works() {
   const allTags = await getAllTags();
   const works = await getWorks();

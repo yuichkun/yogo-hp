@@ -5,6 +5,7 @@ import { FilePreview } from "@/app/components/FilePreview";
 import { Metadata } from "next";
 import { SHARED_METADATA } from "@/app/shared-metadata";
 
+export const dynamic = "force-dynamic";
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
