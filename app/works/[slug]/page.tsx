@@ -1,5 +1,5 @@
 import { getWorkBySlug } from "../../lib/api";
-import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { FilePreview } from "@/app/components/FilePreview";
 import { Metadata } from "next";
