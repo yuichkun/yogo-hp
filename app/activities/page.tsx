@@ -5,18 +5,16 @@ import { LaprasApiResponse, Activity } from "../../@types/lapras";
 // Helper function to get service icon URL
 function getServiceIcon(type: Activity["type"]): string {
   const iconMap = {
-    github: "https://picsum.photos/24/24?random=1",
-    github_pr: "https://picsum.photos/24/24?random=2",
-    qiita: "https://picsum.photos/24/24?random=3",
-    zenn: "https://picsum.photos/24/24?random=4",
-    note: "https://picsum.photos/24/24?random=5",
-    speaker_deck: "https://picsum.photos/24/24?random=6",
-    teratail: "https://picsum.photos/24/24?random=7",
-    blog: "https://picsum.photos/24/24?random=8",
-    connpass: "https://picsum.photos/24/24?random=9",
-    hatena_blog: "https://picsum.photos/24/24?random=10",
+    github: "/sns/github.svg",
+    github_pr: "/sns/github.svg",
+    qiita: "/sns/qiita.svg",
+    zenn: "/sns/zenn.svg",
+    note: "/sns/note.svg",
+    blog: "/sns/blog.svg",
+    connpass: "/sns/connpass.svg",
+    hatena_blog: "/sns/hatena-blog.svg",
   };
-  return iconMap[type] || "https://picsum.photos/24/24?random=0";
+  return iconMap[type] || "/sns/blog.svg"; // Default fallback
 }
 
 // Helper function to format Japanese date

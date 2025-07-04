@@ -77,11 +77,9 @@ export interface Activity {
   type:
     | "github"
     | "github_pr"
-    | "speaker_deck"
     | "qiita"
     | "zenn"
     | "note"
-    | "teratail"
     | "blog"
     | "connpass"
     | "hatena_blog";
