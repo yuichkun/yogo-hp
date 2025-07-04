@@ -5,8 +5,12 @@ export default function Contact() {
   return (
     <main>
       <div>
-        <div className="mb-2">▶︎各種SNS等</div>
-        <a href="https://bento.me/yuichkun" target="_blank">
+        各種SNS:{" "}
+        <a
+          href="https://bento.me/yuichkun"
+          target="_blank"
+          className="text-blue-400 hover:text-blue-300 font-medium text-sm"
+        >
           bento
         </a>
       </div>
