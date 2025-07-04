@@ -70,20 +70,75 @@ export interface Event {
   is_organizer: boolean;
 }
 
-export interface Activity {
+export interface GitHubActivity {
+  type: "github" | "github_pr";
   title: string;
   url: string;
   date: string;
-  type:
-    | "github"
-    | "github_pr"
-    | "qiita"
-    | "zenn"
-    | "note"
-    | "blog"
-    | "connpass"
-    | "hatena_blog";
 }
+
+export interface QiitaActivity {
+  type: "qiita";
+  title: string;
+  url: string;
+  date: string;
+  tags: string[];
+  headlines: string[];
+  stockers_count: number;
+}
+
+export interface ZennActivity {
+  type: "zenn";
+  title: string;
+  url: string;
+  date: string;
+  tags: string[];
+}
+
+export interface BlogActivity {
+  type: "blog";
+  title: string;
+  url: string;
+  date: string;
+  tags: string[];
+}
+
+export interface NoteActivity {
+  type: "note";
+  title: string;
+  url: string;
+  date: string;
+  tags: string[];
+  like_count: number;
+}
+
+export interface HatenaActivity {
+  type: "hatena_blog";
+  title: string;
+  url: string;
+  date: string;
+  tags: string[];
+  bookmark_count: number;
+}
+
+export interface EventActivity {
+  type: "connpass";
+  title: string;
+  url: string;
+  date: string;
+  is_presenter: boolean;
+  is_organizer: boolean;
+  status: number;
+}
+
+export type Activity =
+  | GitHubActivity
+  | QiitaActivity
+  | ZennActivity
+  | BlogActivity
+  | NoteActivity
+  | HatenaActivity
+  | EventActivity;
 
 // Main LAPRAS API Response Type - only fields of interest
 export interface LaprasApiResponse {

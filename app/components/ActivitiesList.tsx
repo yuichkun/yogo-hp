@@ -49,7 +49,7 @@ function formatDateRange(startDate: string, endDate: string): string {
 function getActivityDescription(activity: Activity): string {
   if (activity.type === "github_pr") {
     if (activity.title.includes("yuichkun/")) {
-      return "自分のリポジトリへのPull Request作成";
+      return "PR作成";
     } else {
       return "OSSへのPR作成";
     }

@@ -1,6 +1,22 @@
 import { Metadata } from "next";
 import { SHARED_METADATA } from "../shared-metadata";
-import { LaprasApiResponse, Activity } from "../../@types/lapras";
+import {
+  LaprasApiResponse,
+  Activity,
+  QiitaActivity,
+  ZennActivity,
+  BlogActivity,
+  NoteActivity,
+  HatenaActivity,
+  EventActivity,
+  GitHubActivity,
+  QiitaArticle,
+  ZennArticle,
+  BlogArticle,
+  NoteArticle,
+  HatenaArticle,
+  Event,
+} from "../../@types/lapras";
 import { Suspense } from "react";
 import { TagList, FilterItem } from "../components/TagList";
 import { ActivitiesList } from "../components/ActivitiesList";
@@ -82,6 +98,73 @@ function getActivityCategories(activities: Activity[]): FilterItem[] {
   return categories;
 }
 
+// Transform functions for each data source
+function transformQiitaArticles(articles: QiitaArticle[]): QiitaActivity[] {
+  return articles.map((article) => ({
+    type: "qiita" as const,
+    title: article.title,
+    url: article.url,
+    date: article.updated_at,
+    tags: article.tags,
+    headlines: article.headlines,
+    stockers_count: article.stockers_count,
+  }));
+}
+
+function transformZennArticles(articles: ZennArticle[]): ZennActivity[] {
+  return articles.map((article) => ({
+    type: "zenn" as const,
+    title: article.title,
+    url: article.url,
+    date: article.posted_at,
+    tags: article.tags,
+  }));
+}
+
+function transformBlogArticles(articles: BlogArticle[]): BlogActivity[] {
+  return articles.map((article) => ({
+    type: "blog" as const,
+    title: article.title,
+    url: article.url,
+    date: article.posted_at,
+    tags: article.tags,
+  }));
+}
+
+function transformNoteArticles(articles: NoteArticle[]): NoteActivity[] {
+  return articles.map((article) => ({
+    type: "note" as const,
+    title: article.title,
+    url: article.url,
+    date: article.published_at,
+    tags: article.tags,
+    like_count: article.like_count,
+  }));
+}
+
+function transformHatenaArticles(articles: HatenaArticle[]): HatenaActivity[] {
+  return articles.map((article) => ({
+    type: "hatena_blog" as const,
+    title: article.title,
+    url: article.url,
+    date: article.published_at,
+    tags: article.tags,
+    bookmark_count: article.bookmark_count,
+  }));
+}
+
+function transformEvents(events: Event[]): EventActivity[] {
+  return events.map((event) => ({
+    type: "connpass" as const,
+    title: event.title,
+    url: event.url,
+    date: event.date,
+    is_presenter: event.is_presenter,
+    is_organizer: event.is_organizer,
+    status: event.status,
+  }));
+}
+
 // Server Component with async data fetching
 export default async function Activities() {
   try {
@@ -96,12 +179,27 @@ export default async function Activities() {
 
     const data: LaprasApiResponse = await response.json();
 
+    // Combine activities from different sources
+    const activities: Activity[] = [
+      // Keep GitHub activities from the activities array
+      ...data.activities.filter(
+        (a) => a.type === "github" || a.type === "github_pr"
+      ),
+      // Transform and add activities from other sources
+      ...transformQiitaArticles(data.qiita_articles || []),
+      ...transformZennArticles(data.zenn_articles || []),
+      ...transformBlogArticles(data.blog_articles || []),
+      ...transformNoteArticles(data.note_articles || []),
+      ...transformHatenaArticles(data.hatena_articles || []),
+      ...transformEvents(data.events || []),
+    ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
     // Group activities by year
-    const activitiesByYear = groupActivitiesByYear(data.activities);
+    const activitiesByYear = groupActivitiesByYear(activities);
     const years = Object.keys(activitiesByYear).sort().reverse(); // Most recent first
 
     // Get categories for filtering
-    const activityCategories = getActivityCategories(data.activities);
+    const activityCategories = getActivityCategories(activities);
 
     return (
       <main className="container mx-auto px-4 py-8 max-w-4xl">
