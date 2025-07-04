@@ -45,9 +45,18 @@ function formatDateRange(startDate: string, endDate: string): string {
 
 // Helper function to get activity description
 function getActivityDescription(activity: Activity): string {
+  // Special handling for github_pr
+  if (activity.type === "github_pr") {
+    // Check if it's a PR to yuichkun's own repository
+    if (activity.title.includes("yuichkun/")) {
+      return "自分のリポジトリへのPull Request作成";
+    } else {
+      return "OSSへのPR作成";
+    }
+  }
+
   const typeMap = {
     github: "リポジトリ作成",
-    github_pr: "自分のリポジトリへのPull Request作成",
     qiita: "Qiita記事投稿",
     zenn: "Zenn記事投稿",
     note: "note記事投稿",
