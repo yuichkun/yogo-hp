@@ -121,17 +121,29 @@ type Props = {
 
 export function ActivitiesList({ activitiesByYear, years }: Props) {
   const searchParams = useSearchParams();
-  const selectedType = searchParams.get("type");
+  const selectedCategory = searchParams.get("category");
 
-  // Filter activities by type
+  // Map activity types to categories
+  const typeToCategory: Record<Activity["type"], string> = {
+    qiita: "articles",
+    note: "articles",
+    zenn: "articles",
+    blog: "articles",
+    hatena_blog: "articles",
+    connpass: "events",
+    github: "github",
+    github_pr: "github",
+  };
+
+  // Filter activities by category
   const filteredActivitiesByYear = useMemo(() => {
-    if (!selectedType) return activitiesByYear;
+    if (!selectedCategory) return activitiesByYear;
 
     const filtered: Record<string, Activity[]> = {};
 
     for (const [year, activities] of Object.entries(activitiesByYear)) {
       const filteredActivities = activities.filter(
-        (activity) => activity.type === selectedType
+        (activity) => typeToCategory[activity.type] === selectedCategory
       );
       if (filteredActivities.length > 0) {
         filtered[year] = filteredActivities;
@@ -139,14 +151,14 @@ export function ActivitiesList({ activitiesByYear, years }: Props) {
     }
 
     return filtered;
-  }, [activitiesByYear, selectedType]);
+  }, [activitiesByYear, selectedCategory]);
 
   const filteredYears = Object.keys(filteredActivitiesByYear).sort().reverse();
 
   if (filteredYears.length === 0) {
     return (
       <p className="text-gray-300">
-        No activities found for the selected type.
+        No activities found for the selected category.
       </p>
     );
   }

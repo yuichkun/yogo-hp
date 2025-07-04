@@ -24,28 +24,62 @@ function groupActivitiesByYear(
   );
 }
 
-// Helper function to get unique activity types
-function getActivityTypes(activities: Activity[]): FilterItem[] {
-  const typeMap: Record<Activity["type"], string> = {
-    github: "リポジトリ作成",
-    github_pr: "Pull Request",
-    qiita: "Qiita",
-    zenn: "Zenn",
-    note: "note",
-    blog: "ブログ",
-    connpass: "イベント参加",
-    hatena_blog: "はてなブログ",
+// Helper function to get categories for filtering
+function getActivityCategories(activities: Activity[]): FilterItem[] {
+  // Map activity types to categories
+  const typeToCategory: Record<Activity["type"], string> = {
+    qiita: "articles",
+    note: "articles",
+    zenn: "articles",
+    blog: "articles",
+    hatena_blog: "articles",
+    connpass: "events",
+    github: "github",
+    github_pr: "github",
   };
 
-  const uniqueTypes = Array.from(new Set(activities.map((a) => a.type)));
+  // Get all unique types in the activities
+  const typesInData = new Set(activities.map((a) => a.type));
 
-  return uniqueTypes
-    .map((type) => ({
-      id: type,
-      name: type,
-      displayName: typeMap[type] || type,
-    }))
-    .sort((a, b) => a.displayName.localeCompare(b.displayName));
+  // Build category items based on what's actually in the data
+  const categories: FilterItem[] = [];
+
+  // Check if we have any article types
+  const articleTypes: Activity["type"][] = [
+    "qiita",
+    "note",
+    "zenn",
+    "blog",
+    "hatena_blog",
+  ];
+  if (articleTypes.some((type) => typesInData.has(type))) {
+    categories.push({
+      id: "articles",
+      name: "articles",
+      displayName: "Articles",
+    });
+  }
+
+  // Check if we have GitHub activity
+  const githubTypes: Activity["type"][] = ["github", "github_pr"];
+  if (githubTypes.some((type) => typesInData.has(type))) {
+    categories.push({
+      id: "github",
+      name: "github",
+      displayName: "GitHub",
+    });
+  }
+
+  // Check if we have events
+  if (typesInData.has("connpass")) {
+    categories.push({
+      id: "events",
+      name: "events",
+      displayName: "Events",
+    });
+  }
+
+  return categories;
 }
 
 // Server Component with async data fetching
@@ -66,8 +100,8 @@ export default async function Activities() {
     const activitiesByYear = groupActivitiesByYear(data.activities);
     const years = Object.keys(activitiesByYear).sort().reverse(); // Most recent first
 
-    // Get unique activity types for filtering
-    const activityTypes = getActivityTypes(data.activities);
+    // Get categories for filtering
+    const activityCategories = getActivityCategories(data.activities);
 
     return (
       <main className="container mx-auto px-4 py-8 max-w-4xl">
@@ -78,9 +112,9 @@ export default async function Activities() {
           <div className="mb-8 -mx-4">
             <Suspense>
               <TagList
-                items={activityTypes}
+                items={activityCategories}
                 baseUrl="/activities"
-                paramName="type"
+                paramName="category"
                 allLabel="ALL"
               />
             </Suspense>
