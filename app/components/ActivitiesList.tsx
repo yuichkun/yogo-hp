@@ -152,12 +152,14 @@ export function ActivitiesList({ activitiesByYear, years }: Props) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12 px-4 sm:px-0">
       {filteredYears.map((year, yearIndex) => (
-        <div key={year} className="space-y-4">
-          <h2 className="text-xl font-bold text-white mb-6">{year}</h2>
+        <div key={year} className="space-y-6">
+          <h2 className="text-2xl sm:text-xl font-bold text-white mb-8 sm:mb-6">
+            {year}
+          </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-6 sm:space-y-4">
             {(() => {
               const groupedActivities = groupConsecutiveActivities(
                 filteredActivitiesByYear[year]
@@ -167,49 +169,58 @@ export function ActivitiesList({ activitiesByYear, years }: Props) {
                   index === groupedActivities.length - 1 &&
                   yearIndex === filteredYears.length - 1;
                 return (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-32 text-sm text-gray-300 text-right pt-1">
+                  <div
+                    key={index}
+                    className="flex items-start space-x-4 sm:space-x-4"
+                  >
+                    {/* Mobile: Stack date above, Desktop: Date on left */}
+                    <div className="hidden sm:flex flex-shrink-0 w-32 text-sm text-gray-300 text-right pt-1">
                       {formatDateRange(group.startDate, group.endDate)}
                     </div>
 
                     <div className="flex-shrink-0 relative">
                       {!isLast && (
-                        <div className="absolute left-1/2 top-6 w-px h-16 bg-gray-600 transform -translate-x-1/2"></div>
+                        <div className="absolute left-1/2 top-6 w-px h-20 sm:h-16 bg-gray-600 transform -translate-x-1/2"></div>
                       )}
-                      <div className="w-3 h-3 bg-blue-400 rounded-full mt-2 relative z-10"></div>
+                      <div className="w-4 h-4 sm:w-3 sm:h-3 bg-blue-400 rounded-full mt-2 relative z-10"></div>
                     </div>
 
-                    <div className="flex-1 p-4">
+                    <div className="flex-1 pb-6 sm:p-4">
+                      {/* Mobile: Show date at top */}
+                      <div className="sm:hidden text-sm text-gray-400 mb-2">
+                        {formatDateRange(group.startDate, group.endDate)}
+                      </div>
+
                       <div className="flex items-start space-x-3">
                         <img
                           src={getServiceIcon(group.type)}
                           alt={group.type}
-                          className="w-6 h-6 rounded flex-shrink-0 mt-0.5"
+                          className="w-7 h-7 sm:w-6 sm:h-6 rounded flex-shrink-0 mt-0.5"
                         />
 
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center space-x-2 mb-1">
-                            <span className="text-sm text-gray-300">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <span className="text-base sm:text-sm text-gray-200 font-medium">
                               {getActivityDescription(group.activities[0])}
                             </span>
                           </div>
 
-                          <div className="flex items-center space-x-2">
+                          <div className="flex items-start space-x-2">
                             <a
                               href={group.activities[0].url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-blue-400 hover:text-blue-300 font-medium text-sm"
+                              className="text-blue-400 hover:text-blue-300 font-medium text-sm sm:text-sm leading-relaxed"
                             >
-                              <span className="truncate">{group.title}</span>
+                              <span className="block">{group.title}</span>
                               {group.count > 1 && (
-                                <span className="ml-1">
+                                <span className="text-gray-400 text-xs mt-1 block">
                                   （{group.count}件）
                                 </span>
                               )}
                             </a>
                             <svg
-                              className="w-3 h-3 text-gray-400 flex-shrink-0"
+                              className="w-4 h-4 sm:w-3 sm:h-3 text-gray-400 flex-shrink-0 mt-0.5"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
