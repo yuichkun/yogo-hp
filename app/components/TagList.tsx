@@ -1,9 +1,8 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import { Tag as ITag } from "contentful";
 import Link from "next/link";
-import { useSelectedTag } from "../hooks/useSelectedTag";
+import { useSearchParams } from "next/navigation";
 
 export const Tag = ({
   name,
@@ -36,22 +35,44 @@ export const Tag = ({
   );
 };
 
-export const TagList = ({ allTags }: { allTags: ITag[] }) => {
-  const selectedTagId = useSelectedTag();
+// Generic filter item type
+export type FilterItem = {
+  id: string;
+  name: string;
+  displayName?: string; // Optional display name different from id
+};
+
+// Generic TagList props
+type TagListProps = {
+  items: FilterItem[];
+  baseUrl: string;
+  paramName?: string; // Default to 'tag'
+  allLabel?: string; // Default to 'ALL'
+};
+
+export const TagList = ({
+  items,
+  baseUrl,
+  paramName = "tag",
+  allLabel = "ALL",
+}: TagListProps) => {
+  const searchParams = useSearchParams();
+  const selectedId = searchParams.get(paramName);
+
   return (
     <ul className="flex gap-2 p-4 whitespace-nowrap overflow-x-auto">
-      <li key="all-works">
-        <Tag name="ALL" href="/works" isSelected={selectedTagId === null} />
+      <li key="all-items">
+        <Tag name={allLabel} href={baseUrl} isSelected={selectedId === null} />
       </li>
-      {allTags.map((tag) => {
+      {items.map((item) => {
         const params = new URLSearchParams();
-        params.append("tag", tag.sys.id);
-        const isSelected = selectedTagId === tag.sys.id;
+        params.append(paramName, item.id);
+        const isSelected = selectedId === item.id;
         return (
-          <li key={tag.sys.id}>
+          <li key={item.id}>
             <Tag
-              name={tag.name}
-              href={`/works/?${params.toString()}`}
+              name={item.displayName || item.name}
+              href={`${baseUrl}?${params.toString()}`}
               isSelected={isSelected}
             />
           </li>

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { TagList } from "../components/TagList";
+import { TagList, FilterItem } from "../components/TagList";
 import { WorkList } from "../components/WorkList";
 import { getAllTags, getWorks } from "../lib/api";
 import { SHARED_METADATA } from "../shared-metadata";
@@ -26,7 +26,13 @@ export default async function Works() {
       </div>
       <div className="mb-8 w-full md:w-[640px] mx-auto">
         <Suspense>
-          <TagList allTags={allTags} />
+          <TagList
+            items={allTags.map((tag) => ({
+              id: tag.sys.id,
+              name: tag.name,
+            }))}
+            baseUrl="/works"
+          />
         </Suspense>
       </div>
       <Suspense>
