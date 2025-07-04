@@ -197,7 +197,7 @@ export function ActivitiesList({ activitiesByYear, years }: Props) {
                       <div className="w-4 h-4 sm:w-3 sm:h-3 bg-blue-400 rounded-full mt-2 relative z-10"></div>
                     </div>
 
-                    <div className="flex-1 pb-6 sm:p-4">
+                    <div className="flex-1 sm:pl-4">
                       {/* Mobile: Show date at top */}
                       <div className="sm:hidden text-sm text-gray-400 mb-2">
                         {formatDateRange(group.startDate, group.endDate)}
