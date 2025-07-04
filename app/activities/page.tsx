@@ -222,7 +222,6 @@ export default async function Activities() {
             <Suspense>
               <ActivitiesList
                 activitiesByYear={activitiesByYear}
-                years={years}
               />
             </Suspense>
           ) : (

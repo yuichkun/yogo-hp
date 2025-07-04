@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { Activity } from "../../@types/lapras";
 import { useMemo } from "react";
+import Image from "next/image";
 
 // Type for grouped activities
 type GroupedActivity = {
@@ -116,27 +117,26 @@ function groupConsecutiveActivities(activities: Activity[]): GroupedActivity[] {
 
 type Props = {
   activitiesByYear: Record<string, Activity[]>;
-  years: string[];
 };
 
-export function ActivitiesList({ activitiesByYear, years }: Props) {
+export function ActivitiesList({ activitiesByYear }: Props) {
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get("category");
 
-  // Map activity types to categories
-  const typeToCategory: Record<Activity["type"], string> = {
-    qiita: "articles",
-    note: "articles",
-    zenn: "articles",
-    blog: "articles",
-    hatena_blog: "articles",
-    connpass: "events",
-    github: "github",
-    github_pr: "github",
-  };
-
   // Filter activities by category
   const filteredActivitiesByYear = useMemo(() => {
+    // Map activity types to categories
+    const typeToCategory: Record<Activity["type"], string> = {
+      qiita: "articles",
+      note: "articles",
+      zenn: "articles",
+      blog: "articles",
+      hatena_blog: "articles",
+      connpass: "events",
+      github: "github",
+      github_pr: "github",
+    };
+
     if (!selectedCategory) return activitiesByYear;
 
     const filtered: Record<string, Activity[]> = {};
@@ -204,9 +204,11 @@ export function ActivitiesList({ activitiesByYear, years }: Props) {
                       </div>
 
                       <div className="flex items-start space-x-3">
-                        <img
+                        <Image
                           src={getServiceIcon(group.type)}
                           alt={group.type}
+                          width={20}
+                          height={20}
                           className="w-7 h-7 sm:w-6 sm:h-6 rounded flex-shrink-0 mt-0.5"
                         />
 
