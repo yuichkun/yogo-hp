@@ -2,6 +2,16 @@ import { Metadata } from "next";
 import { SHARED_METADATA } from "../shared-metadata";
 import { LaprasApiResponse, Activity } from "../../@types/lapras";
 
+// Type for grouped activities
+type GroupedActivity = {
+  activities: Activity[];
+  startDate: string;
+  endDate: string;
+  type: Activity["type"];
+  title: string;
+  count: number;
+};
+
 // Helper function to get service icon URL
 function getServiceIcon(type: Activity["type"]): string {
   const iconMap = {
@@ -25,6 +35,14 @@ function formatJapaneseDate(dateString: string): string {
   return `${month}月${day}日`;
 }
 
+// Helper function to format date range
+function formatDateRange(startDate: string, endDate: string): string {
+  if (startDate === endDate) {
+    return formatJapaneseDate(startDate);
+  }
+  return `${formatJapaneseDate(startDate)}〜${formatJapaneseDate(endDate)}`;
+}
+
 // Helper function to get activity description
 function getActivityDescription(activity: Activity): string {
   const typeMap = {
@@ -33,8 +51,6 @@ function getActivityDescription(activity: Activity): string {
     qiita: "Qiita記事投稿",
     zenn: "Zenn記事投稿",
     note: "note記事投稿",
-    speaker_deck: "SpeakerDeckスライド投稿",
-    teratail: "Teratail回答",
     blog: "ブログ記事投稿",
     connpass: "イベント参加",
     hatena_blog: "はてなブログ記事投稿",
@@ -57,6 +73,58 @@ function groupActivitiesByYear(
     },
     {} as Record<string, Activity[]>
   );
+}
+
+// Helper function to group consecutive activities with same type and title
+function groupConsecutiveActivities(activities: Activity[]): GroupedActivity[] {
+  if (activities.length === 0) return [];
+
+  // Sort activities by date (oldest first for grouping)
+  const sortedActivities = [...activities].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+
+  const groups: GroupedActivity[] = [];
+  let currentGroup: Activity[] = [sortedActivities[0]];
+
+  for (let i = 1; i < sortedActivities.length; i++) {
+    const currentActivity = sortedActivities[i];
+    const lastInGroup = currentGroup[currentGroup.length - 1];
+
+    // Check if current activity should be grouped with the previous ones
+    if (
+      currentActivity.type === lastInGroup.type &&
+      currentActivity.title === lastInGroup.title
+    ) {
+      currentGroup.push(currentActivity);
+    } else {
+      // Save the current group and start a new one
+      groups.push({
+        activities: currentGroup,
+        startDate: currentGroup[0].date,
+        endDate: currentGroup[currentGroup.length - 1].date,
+        type: currentGroup[0].type,
+        title: currentGroup[0].title,
+        count: currentGroup.length,
+      });
+      currentGroup = [currentActivity];
+    }
+  }
+
+  // Don't forget to add the last group
+  if (currentGroup.length > 0) {
+    groups.push({
+      activities: currentGroup,
+      startDate: currentGroup[0].date,
+      endDate: currentGroup[currentGroup.length - 1].date,
+      type: currentGroup[0].type,
+      title: currentGroup[0].title,
+      count: currentGroup.length,
+    });
+  }
+
+  // Reverse to get newest first
+  return groups.reverse();
 }
 
 // Server Component with async data fetching
@@ -94,15 +162,13 @@ export default async function Activities() {
 
                   {/* Activities for this year */}
                   <div className="space-y-4">
-                    {activitiesByYear[year]
-                      .sort(
-                        (a, b) =>
-                          new Date(b.date).getTime() -
-                          new Date(a.date).getTime()
-                      )
-                      .map((activity, index) => {
+                    {(() => {
+                      const groupedActivities = groupConsecutiveActivities(
+                        activitiesByYear[year]
+                      );
+                      return groupedActivities.map((group, index) => {
                         const isLast =
-                          index === activitiesByYear[year].length - 1 &&
+                          index === groupedActivities.length - 1 &&
                           yearIndex === years.length - 1;
                         return (
                           <div
@@ -110,8 +176,8 @@ export default async function Activities() {
                             className="flex items-start space-x-4"
                           >
                             {/* Date */}
-                            <div className="flex-shrink-0 w-16 text-sm text-gray-300 text-right pt-1">
-                              {formatJapaneseDate(activity.date)}
+                            <div className="flex-shrink-0 w-32 text-sm text-gray-300 text-right pt-1">
+                              {formatDateRange(group.startDate, group.endDate)}
                             </div>
 
                             {/* Timeline dot with vertical line */}
@@ -129,8 +195,8 @@ export default async function Activities() {
                               <div className="flex items-start space-x-3">
                                 {/* Service Icon */}
                                 <img
-                                  src={getServiceIcon(activity.type)}
-                                  alt={activity.type}
+                                  src={getServiceIcon(group.type)}
+                                  alt={group.type}
                                   className="w-6 h-6 rounded flex-shrink-0 mt-0.5"
                                 />
 
@@ -138,18 +204,27 @@ export default async function Activities() {
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center space-x-2 mb-1">
                                     <span className="text-sm text-gray-300">
-                                      {getActivityDescription(activity)}
+                                      {getActivityDescription(
+                                        group.activities[0]
+                                      )}
                                     </span>
                                   </div>
 
                                   <div className="flex items-center space-x-2">
                                     <a
-                                      href={activity.url}
+                                      href={group.activities[0].url}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="text-blue-400 hover:text-blue-300 font-medium text-sm truncate"
+                                      className="text-blue-400 hover:text-blue-300 font-medium text-sm"
                                     >
-                                      {activity.title}
+                                      <span className="truncate">
+                                        {group.title}
+                                      </span>
+                                      {group.count > 1 && (
+                                        <span className="ml-1">
+                                          （{group.count}件）
+                                        </span>
+                                      )}
                                     </a>
                                     <svg
                                       className="w-3 h-3 text-gray-400 flex-shrink-0"
@@ -170,7 +245,8 @@ export default async function Activities() {
                             </div>
                           </div>
                         );
-                      })}
+                      });
+                    })()}
                   </div>
                 </div>
               ))}
