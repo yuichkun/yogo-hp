@@ -12,7 +12,7 @@ export default function Error({
   return (
     <div>
       <h2>404: Work Not Found</h2>
-      <Link href="/works">Back to Works</Link>
+      <Link href="/works">Back to Music</Link>
     </div>
   );
 }

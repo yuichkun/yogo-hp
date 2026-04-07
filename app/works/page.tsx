@@ -21,7 +21,7 @@ export default async function Works() {
   return (
     <main className="">
       <div className="text-center mb-4">
-        Works by Yuichi Yogo <br />
+        Music by Yuichi Yogo <br />
         {oldestWorkYear} - {newestWorkYear}
       </div>
       <div className="mb-8 w-full md:w-[640px] mx-auto">
@@ -43,11 +43,11 @@ export default async function Works() {
 }
 
 export const metadata: Metadata = {
-  title: "Works",
-  description: "List of works by Yuichi Yogo",
+  title: "Music",
+  description: "Music by Yuichi Yogo",
   twitter: {
     ...SHARED_METADATA.twitter,
-    title: `YOGO HP | Works`,
-    description: "List of works by Yuichi Yogo",
+    title: `YOGO HP | Music`,
+    description: "Music by Yuichi Yogo",
   },
 };
